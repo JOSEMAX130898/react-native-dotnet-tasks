@@ -1,0 +1,19 @@
+@host = http://localhost:5080
+
+### Todas las tareas (página 1)
+GET {{host}}/api/v1/tasks
+
+### Filtrar por estado y prioridad
+GET {{host}}/api/v1/tasks?status=Pending&priority=High&page=1&pageSize=10
+
+### Detalle
+GET {{host}}/api/v1/tasks/1
+
+### Caso borde: estado inválido -> 400
+GET {{host}}/api/v1/tasks?status=Unknown
+
+### Caso borde: no existe -> 404
+GET {{host}}/api/v1/tasks/999999
+
+### Health
+GET {{host}}/health/ready

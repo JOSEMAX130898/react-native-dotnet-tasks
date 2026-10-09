@@ -1,0 +1,30 @@
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.cs]
+indent_size = 4
+csharp_style_namespace_declarations = file_scoped:warning
+csharp_style_var_for_built_in_types = true:suggestion
+dotnet_sort_system_directives_first = true
+dotnet_style_readonly_field = true:warning
+# Las librerías no capturan contexto de sincronización.
+dotnet_diagnostic.CA2007.severity = warning
+# Los mensajes de log usan plantillas estructuradas (no interpolación).
+dotnet_diagnostic.CA2254.severity = warning
+dotnet_diagnostic.CA1848.severity = none
+
+[tests/**.cs]
+dotnet_diagnostic.CA2007.severity = none
+dotnet_diagnostic.CA1707.severity = none
+
+[*.{csproj,props,json}]
+indent_size = 2
+
+# En ASP.NET Core no hay SynchronizationContext: ConfigureAwait es ruido en la capa Api.
+[src/TaskManager.Api/**.cs]
+dotnet_diagnostic.CA2007.severity = none
